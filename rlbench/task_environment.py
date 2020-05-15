@@ -279,7 +279,18 @@ class TaskEnvironment(object):
 
         self._scene.step()
         success, terminate = self._task.success()
-        return self._scene.get_observation(), int(success), terminate
+        n_min = 1
+        n_max = 2
+        tp_max = 1
+        tp_t = int(success)
+        s_t = 1
+        s_max = 1
+        if success:
+            reward = n_min + (n_max - n_min) * (tp_t * (2**(s_t/s_max) - 1)) / tp_max
+        else:
+            reward = 0
+
+        return self._scene.get_observation(), reward, terminate
 
     def get_path_observations(self):
         if (self._action_mode.arm != ArmActionMode.DELTA_EE_POSE_PLAN and

@@ -52,6 +52,9 @@ class DetectedCondition(Condition):
         if self._negated:
             met = not met
         return met, met
+    
+    def condition_read(self):
+        return self._detector.read()
 
 
 class NothingGrasped(Condition):

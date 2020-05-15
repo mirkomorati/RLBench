@@ -8,8 +8,9 @@ from rlbench.backend.conditions import DetectedCondition
 class SlideBlockToTarget(Task):
 
     def init_task(self) -> None:
+        self.target = Shape('block')
         self.register_success_conditions([
-            DetectedCondition(Shape('block'), ProximitySensor('success'))])
+            DetectedCondition(self.target, ProximitySensor('success'))])
 
     def init_episode(self, index: int) -> List[str]:
         self._variation_index = index

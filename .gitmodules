@@ -1,0 +1,3 @@
+[submodule "RLzoo"]
+	path = RLzoo
+	url = https://github.com/tensorlayer/RLzoo
